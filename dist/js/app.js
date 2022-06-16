@@ -1,23 +1,21 @@
 "use strict";
-let button = document.getElementById("butt");
-let input1 = document.getElementById("inp1");
-let input2 = document.getElementById("inp2");
-function adicionarNumero(num1, num2) {
-    return num1 + num2;
+// O código abaixo tem alguns erros e não funciona como deveria. Você pode identificar quais são e corrigi-los em um arquivo TS?
+let botaoAtualizar = document.getElementById('atualizar-saldo');
+let botaoLimpar = document.getElementById('limpar-saldo');
+let soma = document.getElementById('soma');
+let campoSaldo = document.getElementById('campo-saldo');
+let numberCampoSaldo = Number(campoSaldo.innerHTML);
+numberCampoSaldo = 0;
+function somarAoSaldo(soma) {
+    numberCampoSaldo += soma;
+    campoSaldo.innerHTML = numberCampoSaldo.toString();
 }
-button === null || button === void 0 ? void 0 : button.addEventListener('click', () => {
-    if (input1 && input2) {
-        console.log(adicionarNumero(Number(input1.value), Number(input2.value)));
-    }
+function limparSaldo() {
+    campoSaldo.innerHTML = '';
+}
+botaoAtualizar.addEventListener('click', function () {
+    somarAoSaldo(Number(soma.value));
 });
-function somarValor(ipt1, ipt2) {
-    if (typeof ipt1 === "string" || typeof ipt2 === "string") {
-        return ipt1.toString() + ipt2.toString();
-    }
-    else {
-        return ipt1 + ipt2;
-    }
-}
-console.log(somarValor("Ola", 3));
-console.log(somarValor(3, 3));
-console.log(somarValor("Ola", "mundo"));
+botaoLimpar.addEventListener('click', function () {
+    limparSaldo();
+});

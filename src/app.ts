@@ -1,33 +1,28 @@
-let button = document.getElementById("butt");
-let input1 = document.getElementById("inp1") as HTMLInputElement;
-let input2 = document.getElementById("inp2") as HTMLInputElement;
+// O código abaixo tem alguns erros e não funciona como deveria. Você pode identificar quais são e corrigi-los em um arquivo TS?
 
-function adicionarNumero(num1:number, num2:number): number{ //define retorno como numerico
-    return num1+num2;
+let botaoAtualizar = document.getElementById('atualizar-saldo') as HTMLButtonElement;
+let botaoLimpar = document.getElementById('limpar-saldo') as HTMLButtonElement;
+let soma = document.getElementById('soma') as HTMLInputElement;
+let campoSaldo = document.getElementById('campo-saldo') as HTMLSpanElement;
+
+let numberCampoSaldo: number = Number(campoSaldo.innerHTML);
+numberCampoSaldo = 0;
+
+function somarAoSaldo(soma: number) {
+    numberCampoSaldo += soma;
+    campoSaldo.innerHTML = numberCampoSaldo.toString();
 }
 
+function limparSaldo() {
+    campoSaldo.innerHTML = '';
+}
 
-    button?.addEventListener('click', () => { // ? = if null or not
-        if(input1 && input2){
-            console.log(adicionarNumero(Number(input1.value), Number(input2.value)))
-        }
-    })
+botaoAtualizar.addEventListener('click', function () {
     
+    somarAoSaldo(Number(soma.value));
+});
 
+botaoLimpar.addEventListener('click', function () {
+    limparSaldo();
+});
 
-///////////////////////////////////////////////////////////////////////////////////////////
-
-type input = number | string;
-
-function somarValor(ipt1: input, ipt2: input){
-    if(typeof ipt1 === "string" || typeof ipt2 === "string"){
-        return ipt1.toString() + ipt2.toString()
-    }else{
-        return ipt1 + ipt2
-    }
-
-}
-
-console.log(somarValor("Ola", 3))
-console.log(somarValor(3, 3))
-console.log(somarValor("Ola", "mundo"))
